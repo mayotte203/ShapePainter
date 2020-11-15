@@ -28,18 +28,22 @@ public:
     void newFile();
 
 private:
+    static constexpr float DISTANCE_THRESHOLD = 4.0f;
+
     std::vector<std::unique_ptr<Shape>> m_shapes;
     std::vector<std::unique_ptr<Line>> m_lines;
     std::unique_ptr<IMouseEventHandler> m_mouseEventHandler;
 
     template <class T>
-    void addShape(QPoint pos) {
+    Shape* addShape(QPoint pos) {
         m_shapes.push_back(std::make_unique<T>());
         m_shapes.back()->setPos(pos);
+        return m_shapes.back().get();
     };
-    void eraseShape(std::vector<std::unique_ptr<Shape>>::iterator shapeIt);
+    void eraseShape(QPoint point);
     void addLine(Shape* firstShape, Shape* secondShape);
-    void deleteLine(std::vector<std::unique_ptr<Line>>::iterator lineIt);
+    void deleteConnectedLine(Shape* shape);
+    void eraseLine(QPoint point);
     void paintEvent(QPaintEvent* qEvent);
     void mousePressEvent(QMouseEvent* qEvent);
     void mouseMoveEvent(QMouseEvent* qEvent);
@@ -49,11 +53,11 @@ private:
 class PaintArea::IMouseEventHandler
 {
 public:
-    IMouseEventHandler(PaintArea* parent) : parent(parent) {};
+    IMouseEventHandler(PaintArea* parent) : m_parent(parent) {};
     virtual void handleMousePressEvent(QMouseEvent* qEvent) = 0;
     virtual void handleMouseMoveEvent(QMouseEvent* qEvent) = 0;
     virtual void handleMouseReleaseEvent(QMouseEvent* qEvent) = 0;
     virtual ~IMouseEventHandler() {};
 protected:
-    PaintArea* parent;
+    PaintArea* const m_parent;
 };

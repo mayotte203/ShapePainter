@@ -9,5 +9,4 @@ public:
     void handleMouseMoveEvent(QMouseEvent* qEvent);
     void handleMouseReleaseEvent(QMouseEvent* qEvent);
 private:
-    constexpr static float m_threshold = 4.0f;
 };

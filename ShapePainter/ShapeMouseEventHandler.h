@@ -13,8 +13,8 @@ public:
         case Qt::MouseButton::LeftButton:
         {
             m_startPos = qEvent->pos();
-            parent->addShape<T>(m_startPos);
-            parent->update();
+            m_createdShape = m_parent->addShape<T>(m_startPos);
+            m_parent->update();
             break;
         }
         default:
@@ -25,18 +25,30 @@ public:
     }
     void handleMouseMoveEvent(QMouseEvent* qEvent)
     {
-        if (!parent->m_shapes.empty())
+        if (m_createdShape != nullptr)
         {
             QPoint size = qEvent->pos() - m_startPos;
-            parent->m_shapes.back()->setSize(QSize(size.x(), size.y()));
-            parent->update();
+            m_createdShape->setSize(QSize(size.x(), size.y()));
+            m_parent->update();
         }
     }
     void handleMouseReleaseEvent(QMouseEvent* qEvent)
     {
+        switch (qEvent->button())
+        {
+        case Qt::MouseButton::LeftButton:
+        {
+            m_createdShape = nullptr;
+            break;
+        }
+        default:
+        {
 
+        }
+        }
     }
 
 protected:
     QPoint m_startPos;
+    Shape* m_createdShape = nullptr;
 };

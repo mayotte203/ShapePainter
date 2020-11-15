@@ -5,7 +5,7 @@ class Drawable
 {
 public:
 	virtual ~Drawable() {};
-	virtual void draw(QPainter& qPainter) {};
+	virtual void draw(QPainter& qPainter) = 0;
 private:
 };
 

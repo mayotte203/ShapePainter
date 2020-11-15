@@ -9,22 +9,6 @@ PaintArea::PaintArea(QWidget* parent) : QWidget(parent) {
     m_mouseEventHandler = std::make_unique<ShapeMouseEventHandler<EllipseShape>>(this);
 }
 
-void PaintArea::eraseShape(std::vector<std::unique_ptr<Shape>>::iterator shapeIt)
-{
-    for (auto it = m_lines.begin(); it < m_lines.end();)
-    {
-        if ((*it)->isConnnected(shapeIt->get()))
-        {
-            it = m_lines.erase(it);
-        }
-        else
-        {
-            ++it;
-        }
-    }
-    m_shapes.erase(shapeIt);
-}
-
 void PaintArea::paintEvent(QPaintEvent* qEvent)
 {
 	QPainter painter(this);
@@ -53,14 +37,48 @@ void PaintArea::mouseReleaseEvent(QMouseEvent* qEvent)
     m_mouseEventHandler->handleMouseReleaseEvent(qEvent);
 }
 
+void PaintArea::eraseShape(QPoint point)
+{
+
+    auto it = std::find_if(m_shapes.begin(), m_shapes.end(),
+        [&point](const std::unique_ptr<Shape>& shape) {return shape->getRect().contains(point); });
+    if (it < m_shapes.end())
+    {
+        deleteConnectedLine(it->get());
+        m_shapes.erase(it);
+        update();
+    }
+}
+
+void PaintArea::deleteConnectedLine(Shape* shape)
+{
+    for (auto it = m_lines.begin(); it < m_lines.end();)
+    {
+        if ((*it)->isConnnected(shape))
+        {
+            it = m_lines.erase(it);
+        }
+        else
+        {
+            ++it;
+        }
+    }
+}
+
 void PaintArea::addLine(Shape* firstShape, Shape* secondShape)
 {
     m_lines.push_back(std::make_unique<Line>(firstShape, secondShape));
 }
- 
-void PaintArea::deleteLine(std::vector<std::unique_ptr<Line>>::iterator it)
+
+void PaintArea::eraseLine(QPoint point)
 {
-    m_lines.erase(it);
+    auto it = std::find_if(m_lines.begin(), m_lines.end(),
+        [&point](const std::unique_ptr<Line>& line) {return line->distanceTo(point) < DISTANCE_THRESHOLD; });
+    if (it < m_lines.end())
+    {
+        m_lines.erase(it);
+        update();
+    }
 }
 
 void PaintArea::newFile()

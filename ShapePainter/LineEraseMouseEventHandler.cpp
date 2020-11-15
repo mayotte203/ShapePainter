@@ -6,13 +6,7 @@ void PaintArea::LineEraseMouseEventHandler::handleMousePressEvent(QMouseEvent* q
     {
     case Qt::MouseButton::LeftButton:
     {
-        auto it = std::find_if(parent->m_lines.begin(), parent->m_lines.end(),
-            [&qEvent](const std::unique_ptr<Line>& line) {return line->distanceTo(qEvent->pos()) < m_threshold; });
-        if (it < parent->m_lines.end())
-        {
-            parent->deleteLine(it);
-            parent->update();
-        }
+        m_parent->eraseLine(qEvent->pos());
         break;
     }
     default:
