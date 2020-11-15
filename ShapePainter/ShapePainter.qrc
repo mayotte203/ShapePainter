@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/ShapePainter">
+        <file alias="EllipseIcon">Resources/ellipse.png</file>
+        <file alias="EraseIcon">Resources/erase.png</file>
+        <file alias="LineIcon">Resources/line.png</file>
+        <file alias="LineEraseIcon">Resources/lineerase.png</file>
+        <file alias="LineMoveIcon">Resources/linemove.png</file>
+        <file alias="MoveIcon">Resources/move.png</file>
+        <file alias="NewIcon">Resources/new.png</file>
+        <file alias="OpenIcon">Resources/open.png</file>
+        <file alias="SaveIcon">Resources/save.png</file>
+        <file alias="StarIcon">Resources/star.png</file>
+        <file alias="TriangleIcon">Resources/triangle.png</file>
+        <file alias="Cow">Resources/cow.gif</file>
+        <file alias="Jam">Resources/jam.gif</file>
+        <file alias="Sama">Resources/sama.gif</file>
+    </qresource>
+</RCC>
