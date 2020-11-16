@@ -5,8 +5,14 @@ class TriangleShape :
 {
 public:
 	void draw(QPainter& qPainter);
-
+	static QString getNameS()
+	{
+		return "Triangle";
+	}
+	virtual QString getName()
+	{
+		return getNameS();
+	};
 private:
-
 };
 

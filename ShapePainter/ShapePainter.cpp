@@ -9,12 +9,14 @@
 #include "EllipseShape.h"
 #include "StarShape.h"
 #include "TriangleShape.h"
+#include <QFileDialog>
 
 ShapePainter::ShapePainter(QWidget *parent)
     : QMainWindow(parent)
 {
     this->setFixedSize(640, 480);
     m_paintArea = new PaintArea();
+    m_serializer = new PaintAreaSerializer(m_paintArea);
     this->setCentralWidget(m_paintArea);
     createToolBar();
 }
@@ -45,10 +47,16 @@ void ShapePainter::onNewFileButton()
 
 void ShapePainter::onOpenFileButton()
 {
+    m_serializer->loadFromFile(QFileDialog::getOpenFileName(this, "Open File",
+        "",
+        tr("Json (*.json)")));
 }
 
 void ShapePainter::onSaveFileButton()
 {
+    m_serializer->saveToFile(QFileDialog::getSaveFileName(this, "Save File",
+        "",
+        tr("Json (*.json)")));
 }
 
 void ShapePainter::onEllipseShapeButton()

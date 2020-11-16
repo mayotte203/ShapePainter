@@ -15,6 +15,7 @@ public:
 	QPoint getPos();
 	QPoint getCenter();
 	virtual void draw(QPainter& qPainter) = 0;
+	virtual QString getName() = 0;
 protected:
 	QRect m_rect;
 private:

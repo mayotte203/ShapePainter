@@ -3,6 +3,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QToolBar>
 #include "PaintArea.h"
+#include "PaintAreaSerializer.h"
 
 class ShapePainter : public QMainWindow
 {
@@ -15,6 +16,7 @@ public:
 private:
     PaintArea* m_paintArea;
     QToolBar* m_toolBar;
+    PaintAreaSerializer* m_serializer;
 
     void createToolBar();
     void onNewFileButton();

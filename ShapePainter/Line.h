@@ -15,5 +15,7 @@ public:
 private:
 	Shape* m_firstShape = nullptr;
 	Shape* m_secondShape = nullptr;
+
+	friend class PaintAreaSerializer;
 };
 

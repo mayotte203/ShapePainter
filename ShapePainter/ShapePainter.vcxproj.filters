@@ -71,6 +71,9 @@
     <ClCompile Include="LineEraseMouseEventHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PaintAreaSerializer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PaintArea.h">
@@ -110,6 +113,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="LineEraseMouseEventHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PaintAreaSerializer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

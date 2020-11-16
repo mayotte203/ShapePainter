@@ -100,6 +100,7 @@
     <ClCompile Include="Line.cpp" />
     <ClCompile Include="LineEraseMouseEventHandler.cpp" />
     <ClCompile Include="LineMouseEventHandler.cpp" />
+    <ClCompile Include="PaintAreaSerializer.cpp" />
     <ClCompile Include="StarShape.cpp" />
     <ClCompile Include="TriangleShape.cpp" />
     <QtRcc Include="ShapePainter.qrc" />
@@ -122,6 +123,7 @@
     <ClInclude Include="LineMouseEventHandler.h" />
     <ClInclude Include="MoveMouseEventHandler.h" />
     <ClInclude Include="PaintArea.h" />
+    <ClInclude Include="PaintAreaSerializer.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="ShapeMouseEventHandler.h" />
     <ClInclude Include="StarShape.h" />

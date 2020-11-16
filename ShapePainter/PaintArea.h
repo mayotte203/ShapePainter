@@ -26,7 +26,6 @@ public:
         m_mouseEventHandler = std::make_unique<T>(this);
     };
     void newFile();
-
 private:
     static constexpr float DISTANCE_THRESHOLD = 4.0f;
 
@@ -48,6 +47,8 @@ private:
     void mousePressEvent(QMouseEvent* qEvent);
     void mouseMoveEvent(QMouseEvent* qEvent);
     void mouseReleaseEvent(QMouseEvent* qEvent);
+
+    friend class PaintAreaSerializer;
 };
 
 class PaintArea::IMouseEventHandler
